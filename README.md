@@ -65,7 +65,8 @@ The **Mosha’ereh Dialogue-Based Game** is an interactive voice-only applicatio
 
 
 
-Team Members 👥
+## Team Members 👥
+```plaintext
 Zohreh – Responsible for dialogue flow, state machine design, and speech recognition integration.
 Bita – Focused on NLP module development, database management, and verse validation.
 Contributing 🤝

@@ -65,26 +65,38 @@ The **Mosha’ereh Dialogue-Based Game** is an interactive voice-only applicatio
 
 
 
-## Team Members
-Zohreh – Dialogue flow, state machine design, and speech recognition integration.
-Bita – NLP module development, database management, and verse validation.
-Contributing
-If you wish to contribute:
+Team Members 👥
+Zohreh – Responsible for dialogue flow, state machine design, and speech recognition integration.
+Bita – Focused on NLP module development, database management, and verse validation.
+Contributing 🤝
+If you wish to contribute to this project, please follow these steps:
 
 Fork the repository.
-Create a new feature branch (git checkout -b feature-name).
-Commit your changes (git commit -m 'Add new feature').
-Push to the branch (git push origin feature-name).
-Open a Pull Request.
-License
+Create a new feature branch:
+bash
+Copy
+Edit
+git checkout -b feature-name
+Commit your changes:
+bash
+Copy
+Edit
+git commit -m 'Add new feature'
+Push to the branch:
+bash
+Copy
+Edit
+git push origin feature-name
+Open a Pull Request – Describe your changes and request a review.
+License 📜
 This project is licensed under the MIT License. Feel free to use, modify, and distribute it as you see fit.
 
-Acknowledgements
+Acknowledgements 🙏
 Inspired by the traditional Persian poetry game Mosha’ereh.
-Special thanks to the creators of Speechstate for the powerful dialogue management framework.
-Contact
+Special thanks to the creators of Speechstate for providing a powerful dialogue management framework.
+Contact 📧
 For any questions or feedback, please reach out to:
 
-Zohreh – [Contact Information]
-Bita – [Contact Information]
+Zohreh – z.samimi1981@gmail.com
+Bita – bitabki@gmail.com 
 

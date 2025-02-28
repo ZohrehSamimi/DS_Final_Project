@@ -73,20 +73,17 @@ If you wish to contribute to this project, please follow these steps:
 
 Fork the repository.
 Create a new feature branch:
-bash
-Copy
-Edit
+ ```bash
 git checkout -b feature-name
+```
 Commit your changes:
-bash
-Copy
-Edit
+ ```bash
 git commit -m 'Add new feature'
+```
 Push to the branch:
-bash
-Copy
-Edit
+ ```bash
 git push origin feature-name
+```
 Open a Pull Request – Describe your changes and request a review.
 License 📜
 This project is licensed under the MIT License. Feel free to use, modify, and distribute it as you see fit.

@@ -63,7 +63,9 @@ The **Mosha’ereh Dialogue-Based Game** is an interactive voice-only applicatio
 ├── tsconfig.json                  # TypeScript configuration
 └── README.md                      # Project documentation
 
-Team Members
+
+
+## Team Members
 Zohreh – Dialogue flow, state machine design, and speech recognition integration.
 Bita – NLP module development, database management, and verse validation.
 Contributing

@@ -73,17 +73,3 @@ The goal of this project is to design and implement a dialogue-based game inspir
    - **Version Control:** Using **GitHub** for collaboration and maintaining a project diary of tasks and contributions.
 
 ---
-
-### **Expected Outcome:**
-A functional and engaging dialogue-based game application that preserves the cultural essence of **Mosha’ereh** while leveraging modern voice technology. This game will serve as an educational and entertaining tool for Persian poetry enthusiasts.
-
----
-
-### **Next Steps:**
-- **Develop the State Machine Diagram** – To visualize dialogue flow and state transitions.
-- **Build the NLP Module** – For text processing and verse validation.
-- **Integrate Speechstate** – To enable voice-based interaction and dialogue management.
-- **Test and Iterate** – Ensuring smooth gameplay and accurate poetry validation.
-
----
-

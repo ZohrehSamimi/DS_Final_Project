@@ -21,6 +21,11 @@
   },
   "homepage": "https://github.com/ZohrehSamimi/DS_Final_Project#readme",
   "devDependencies": {
+    "@types/sqlite3": "^3.1.11",
     "typescript": "^5.8.2"
+  },
+  "dependencies": {
+    "speechstate": "^2.9.0",
+    "sqlite3": "^5.1.7"
   }
 }

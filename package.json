@@ -1,0 +1,26 @@
+{
+  "name": "ds_final_project-1",
+  "version": "1.0.0",
+  "description": "The **Mosha’ereh Dialogue-Based Game** is an interactive voice-only application inspired by the traditional Persian poetry game, **Mosha’ereh**. It uses **Speechstate** for voice recognition and dialogue management, allowing players to engage in poetic battles using authentic Persian poetry.",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ZohrehSamimi/DS_Final_Project.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ZohrehSamimi/DS_Final_Project/issues"
+  },
+  "homepage": "https://github.com/ZohrehSamimi/DS_Final_Project#readme",
+  "devDependencies": {
+    "typescript": "^5.8.2"
+  }
+}

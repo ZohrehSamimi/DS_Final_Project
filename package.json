@@ -7,7 +7,8 @@
     "doc": "docs"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "vite"
   },
   "repository": {
     "type": "git",
@@ -21,8 +22,10 @@
   },
   "homepage": "https://github.com/ZohrehSamimi/DS_Final_Project#readme",
   "devDependencies": {
+    "@types/dom-speech-recognition": "^0.0.4",
     "@types/sqlite3": "^3.1.11",
-    "typescript": "^5.8.2"
+    "typescript": "^5.8.2",
+    "vite": "^6.2.3"
   },
   "dependencies": {
     "speechstate": "^2.9.0",

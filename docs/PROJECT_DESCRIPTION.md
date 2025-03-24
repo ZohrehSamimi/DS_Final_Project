@@ -1,6 +1,4 @@
-Here is the formatted version for your report:
 
----
 
 ## Project Title: Dialogue-Based Game Application – Mosha’ereh
 
@@ -29,47 +27,104 @@ The goal of this project is to design and implement a dialogue-based game inspir
 5. **Authenticity Check:** Verses must be authentic and recognized as Persian poetry.
 
 ---
+Tech Stack (with SpeechState)
 
-### **Technical Overview:**
-1. **Platform:** Using **Speechstate** for voice recognition and dialogue management.
-2. **Programming Language:** **Python** for backend logic and NLP processing.
-3. **NLP Components:**
-   - **Word Segmentation & Tokenization** using **Hazm** or **Parsivar**.
-   - **Text Matching & Validation** to check the authenticity of verses.
-4. **Knowledge Base:**
-   - A database of Persian poetry organized by last letters for efficient lookups.
-5. **Game Logic:**
-   - Turn management, time tracking, scorekeeping, and maintaining state transitions.
-6. **Dialogue Management:**
-   - Managing conversation flow and providing hints or feedback to the player.
-7. **User Interface:**
-   - Voice-based interaction for an immersive gaming experience.
+Core Modules in TypeScript
+We'll create the following:
 
----
+PoetryDataset.ts – loads and organizes verses
 
-### **Development Plan:**
-1. **Step 1: Define the Dialogue Flow**
-   - **State Machine Diagram**: Visualizing the dialogue flow and game states, including:
-     - **Welcome Screen** – Introduction and explanation of rules.
-     - **Game Start** – Prompting the player to recite a verse.
-     - **Turn Management** – Alternating turns between the player and the system.
-     - **Verse Validation** – Checking the last letter and authenticity of the verse.
-     - **End Game** – Declaring the winner or ending the game if no valid verse is found.
+SpeechRecognition.ts – captures user voice input
 
-2. **Step 2: Game Logic and NLP Components**
-   - **Extract Last Letter:** Using **Hazm** or **Parsivar** for Farsi text processing.
-   - **Verse Validation:** Building a comprehensive database of authentic Persian poetry.
-   - **Turn Management:** Implementing a system to track turns, time limits, and scores.
+TextToSpeech.ts – reads AI verses out loud
 
-3. **Step 3: Using Speechstate**
-   - **Speech Recognition:** Capturing the player’s voice input.
-   - **Natural Language Understanding:** Extracting and validating verses.
-   - **Dialogue Management:** Managing state transitions for smooth turn-based gameplay.
+GameLogic.ts – handles turn logic & validation
 
-4. **Step 4: Project Collaboration and Structure**
-   - **Team Members:**
-     - **Zohreh:** Responsible for dialogue flow, state machine design, and speech recognition integration.
-     - **Bita:** Focused on NLP module development, database management, and verse validation.
+GameStates.ts – defines Speechstate dialogue states
+
+⚙️ Technologies
+Speech Recognition:
+
+In browser: Web Speech API (good for quick demos)
+
+Node.js: integrate Google Cloud Speech-to-Text or Whisper (needs a wrapper)
+
+TTS (Text-to-Speech):
+
+In browser: SpeechSynthesis API
+
+Node.js: gtts, say, or cloud services (like Google TTS)
+
+Speechstate:
+
+Use as a finite state machine (FSM) to handle transitions like:
+
+start → userTurn → validate → aiTurn → end
+
+Project Structure :
+moshaereh-game/
+├── src/
+│   ├── GameStates.ts
+│   ├── PoetryDataset.ts
+│   ├── GameLogic.ts
+│   ├── SpeechRecognition.ts
+│   ├── TextToSpeech.ts
+│   └── index.ts (main loop)
+├── poetry.json
+├── tsconfig.json
+└── package.json
+
+Game Flow in SpeechState:
+
+const states = {
+  start: {
+    entry: () => {
+      const verse = getRandomVerse();
+      speak(verse);
+      context.expectedLetter = getLastLetter(verse);
+      return "userTurn";
+    }
+  },
+  userTurn: {
+    entry: async () => {
+      const userInput = await listen();
+      context.userVerse = userInput;
+      return "validate";
+    }
+  },
+  validate: {
+    entry: () => {
+      const isValid = validateUserVerse(context.userVerse, context.expectedLetter);
+      if (isValid) {
+        const aiVerse = getMatchingVerse(getLastLetter(context.userVerse));
+        if (!aiVerse) return "userWins";
+        context.aiVerse = aiVerse;
+        return "aiTurn";
+      } else {
+        return "gameOver";
+      }
+    }
+  },
+  aiTurn: {
+    entry: () => {
+      speak(context.aiVerse);
+      context.expectedLetter = getLastLetter(context.aiVerse);
+      return "userTurn";
+    }
+  },
+  gameOver: {
+    entry: () => {
+      speak("این شعر درست نبود. بازی تمام شد.");
+    }
+  },
+  userWins: {
+    entry: () => {
+      speak("شما برنده شدید! دیگه شعری ندارم.");
+    }
+  }
+}
+
+
    - **Version Control:** Using **GitHub** for collaboration and maintaining a project diary of tasks and contributions.
 
 ---

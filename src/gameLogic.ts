@@ -11,52 +11,66 @@ export interface GameState {
 
 export class GameLogic {
   private state: GameState;
+  private poetry: Record<string, string[]>;
 
-  constructor() {
+  constructor(poetry: Record<string, string[]>) {
+    this.poetry = poetry;
     this.state = {
       currentTurn: "ai",
       lastLetter: "",
     };
   }
 
-  // AI starts with a predefined verse
   startGame(): string {
-    const aiVerse = "Every end is a new beginning"; // ← placeholder
-    this.state.aiLastVerse = aiVerse;
-    this.state.lastLetter = this.getLastLetter(aiVerse);
+    const letters = Object.keys(this.poetry);
+    const randomLetter = letters[Math.floor(Math.random() * letters.length)];
+    const verse = this.getVerseStartingWith(randomLetter);
+    this.state.aiLastVerse = verse;
+    this.state.lastLetter = this.getLastLetter(verse);
     this.state.currentTurn = "user";
-    return aiVerse;
+    return verse;
   }
 
-  // User speaks a verse; we store and validate
   processUserVerse(verse: string): boolean {
-    const firstLetter = this.getFirstLetter(verse);
-    if (firstLetter.toLowerCase() === this.state.lastLetter.toLowerCase()) {
+    const firstLetter = this.getFirstLetter(verse).toLowerCase();
+    const expected = this.state.lastLetter.toLowerCase();
+    console.log(`🔍 Comparing: "${firstLetter}" vs "${expected}"`);
+  
+    if (firstLetter === expected) {
       this.state.userLastInput = verse;
       this.state.currentTurn = "ai";
       this.state.lastLetter = this.getLastLetter(verse);
-      return true; // valid
+      return true;
     }
-    return false; // invalid
+  
+    return false;
   }
 
-  // AI replies with a verse (dummy for now)
   getNextAIVerse(): string {
-    const aiVerse = "Go with the flow"; // ← later this will come from poetry.json
-    this.state.aiLastVerse = aiVerse;
+    const verse = this.getVerseStartingWith(this.state.lastLetter);
+    this.state.aiLastVerse = verse;
     this.state.currentTurn = "user";
-    this.state.lastLetter = this.getLastLetter(aiVerse);
-    return aiVerse;
+    this.state.lastLetter = this.getLastLetter(verse);
+    return verse;
+  }
+
+  getVerseStartingWith(letter: string): string {
+    const options = this.poetry[letter.toLowerCase()];
+    if (!options || options.length === 0) {
+      return "I don't have a verse for that letter.";
+    }
+    const verse = options[Math.floor(Math.random() * options.length)];
+    return verse;
   }
 
   getFirstLetter(text: string): string {
-    return text.trim()[0];
+    return text.trim().replace(/[^a-zA-Z]/g, "")[0];
   }
 
   getLastLetter(text: string): string {
-    const cleaned = text.trim().replace(/[.,!?]$/, "");
-    return cleaned[cleaned.length - 1];
-  }
+  const cleaned = text.trim().replace(/[^a-zA-Z]+$/, "");
+  return cleaned[cleaned.length - 1];
+}
 
   getState(): GameState {
     return this.state;

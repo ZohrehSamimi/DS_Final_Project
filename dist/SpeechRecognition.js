@@ -1,5 +1,6 @@
 // src/SpeechRecognition.ts
 export class SpeechRecognizer {
+    recognition;
     constructor(language = "fa-IR") {
         const SpeechRecognitionClass = window.SpeechRecognition || window.webkitSpeechRecognition;
         if (!SpeechRecognitionClass) {

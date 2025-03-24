@@ -1,47 +1,51 @@
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
 import { SpeechRecognizer } from "./SpeechRecognition";
 import { speak } from "./TextToSpeech";
-import { GameLogic } from "./GameLogic";
-const recognizer = new SpeechRecognizer();
-const game = new GameLogic();
-document.addEventListener("DOMContentLoaded", () => {
+import { GameLogic } from "./gameLogic";
+// Load poetry dataset
+async function loadPoetry() {
+    const res = await fetch("/poetry.json");
+    return await res.json();
+}
+let recognizer;
+let game;
+document.addEventListener("DOMContentLoaded", async () => {
+    const poetry = await loadPoetry();
+    recognizer = new SpeechRecognizer();
+    game = new GameLogic(poetry);
     const startBtn = document.getElementById("start-btn");
-    if (startBtn) {
-        startBtn.addEventListener("click", () => __awaiter(void 0, void 0, void 0, function* () {
-            if (game.getState().currentTurn === "ai") {
-                // AI starts the game
-                const aiVerse = game.startGame();
-                console.log("🤖 AI says:", aiVerse);
-                speak(aiVerse);
+    startBtn?.addEventListener("click", async () => {
+        if (game.getState().currentTurn === "ai") {
+            const aiVerse = game.startGame();
+            console.log("🤖 AI says:", aiVerse);
+            speak(aiVerse);
+            return;
+        }
+        // User's turn
+        console.log("🎤 Listening...");
+        try {
+            const result = await recognizer.listen();
+            if (!result || result.trim().length === 0) {
+                speak("I didn't hear anything. Please try again.");
                 return;
             }
-            // User's turn
-            console.log("🎤 Listening started...");
-            try {
-                const result = yield recognizer.listen();
-                console.log("🧑 You said:", result);
-                alert(`You said: ${result}`);
-                const isValid = game.processUserVerse(result);
-                if (isValid) {
-                    const aiVerse = game.getNextAIVerse();
-                    console.log("🤖 AI replies:", aiVerse);
-                    setTimeout(() => speak(aiVerse), 500);
+            console.log("🧑 You said:", result);
+            const isValid = game.processUserVerse(result);
+            if (isValid) {
+                const aiVerse = game.getNextAIVerse();
+                if (!aiVerse) {
+                    speak("I have no verse for that letter. You win!");
+                    return;
                 }
-                else {
-                    speak("Your verse is invalid. Try again.");
-                }
+                console.log("🤖 AI replies:", aiVerse);
+                setTimeout(() => speak(aiVerse), 500);
             }
-            catch (err) {
-                console.error("❌ Recognition error:", err);
+            else {
+                speak("Your verse is invalid. Try again.");
             }
-        }));
-    }
+        }
+        catch (err) {
+            console.error("❌ Error:", err);
+            speak("I didn't catch that. Please try again.");
+        }
+    });
 });

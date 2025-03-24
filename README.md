@@ -99,3 +99,13 @@ For any questions or feedback, please reach out to:
 Zohreh – z.samimi1981@gmail.com
 Bita – bitabki@gmail.com 
 
+
+
+**************
+        Edge Case	                                                          Fix
+🔇 User says nothing / silence	                            Detect empty result and ask to repeat
+🔡 User input doesn't start with expected letter	        Already handled, just show better feedback
+🔤 AI has no verse starting with the expected letter	    Show “You win!” and end game
+🔁 Same verse repeats	                                    Avoid repeats by removing used verses
+📄 poetry.json is missing letters                    	    Show friendly message: “No verses for this letter”
+🔠 Punctuation or casing mismatch	                        Already handled with toLowerCase() and cleanup regexes

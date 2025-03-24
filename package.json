@@ -23,12 +23,13 @@
   "homepage": "https://github.com/ZohrehSamimi/DS_Final_Project#readme",
   "devDependencies": {
     "@types/dom-speech-recognition": "^0.0.4",
+    "@types/node": "^22.13.13",
     "@types/sqlite3": "^3.1.11",
     "typescript": "^5.8.2",
     "vite": "^6.2.3"
   },
   "dependencies": {
-    "speechstate": "^2.9.0",
+    "speechstate": "^2.6.0",
     "sqlite3": "^5.1.7"
   }
 }

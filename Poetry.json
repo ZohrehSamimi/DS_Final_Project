@@ -14,7 +14,28 @@
     "l": ["Laughter is the best medicine", "Life is what you make it"],
     
     "o": ["Out of sight, out of mind", "Once bitten, twice shy"]
-
-
-  }
   
+    "A": ["An apple a day keeps the doctor away" , "All roads lead to Rome"], 
+    "B": ["Better safe than sorry" , "Blood is thicker than water"] , 
+    "C": ["Clothes make the man" , "Customer is always right"] , 
+    "D": ["Don't judge a book by its cover" , "Don't fall before you're pushed"] , 
+    "E": ["Every rose has its thorn" , "Even a broken clock is right twice a day"] , 
+    "F": ["First come first served" , "First things first" , "Failure is the stepping stone for success"] , 
+    "G": ["Garbage in garbage out" , "Go woth the flow" , "Good fences make good neighbors"] , 
+    "H": ["Hard words break no bones" , "Home is where the heart is"] , 
+    "I": ["If a job is worth doing it is worth doing well" , "It takes two to tango"] , 
+    "J": ["Jack os all trades and master of none" , "Journey of a thousand miles starts with a single step"] , 
+    "K": ["Keep your mouth shut and your ears open" , "Knowledge is power"] , 
+    "L": ["Learn to walk before you run" , "Less is more" , "Life imitates art"] , 
+    "M": ["Manners make the man" , "Measure twice cut once" , "Money is the root of all evil"] , 
+    "N": ["Necessity is the mother of invention" , "Never lie to your lawyer"] , 
+    "O": ["Old habits die hard" , "Out of the frying pan into the fire" , "Opportunity knocks only once"] , 
+    "P": ["Politeness costs nothing and gains everything" , "Practice makes perfect"] , 
+    "R": ["Reality is stranger than fiction" , "Rome wasn't built in a day"] , 
+    "S": ["Seeing is believing" , "Silence is golden" , "Stolen fruit is the sweetest"] , 
+    "T": ["There is luck in odd numbers" , "This too shall pass" , "Think before you speak"] , 
+    "U": ["Unity is strength" , "Use it or lose it"] , 
+    "V": ["Variety is the spice of life" , "Voice of people is the voice of god"] , 
+    "W": ["Waste not want not" , "What goes around comes around"] , 
+    "Y": ["You know the tree by its fruit" , "You can't have an omelette unless you break the egg"], 
+}

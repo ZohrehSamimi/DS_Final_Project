@@ -13,7 +13,7 @@
     "m": ["Make hay while the sun shines", "Make love, not war"],
     "l": ["Laughter is the best medicine", "Life is what you make it"],
     
-    "o": ["Out of sight, out of mind", "Once bitten, twice shy"]
+    "o": ["Out of sight, out of mind", "Once bitten, twice shy"] , 
   
     "A": ["An apple a day keeps the doctor away" , "All roads lead to Rome"], 
     "B": ["Better safe than sorry" , "Blood is thicker than water"] , 
@@ -37,5 +37,5 @@
     "U": ["Unity is strength" , "Use it or lose it"] , 
     "V": ["Variety is the spice of life" , "Voice of people is the voice of god"] , 
     "W": ["Waste not want not" , "What goes around comes around"] , 
-    "Y": ["You know the tree by its fruit" , "You can't have an omelette unless you break the egg"], 
+    "Y": ["You know the tree by its fruit" , "You can't have an omelette unless you break the egg"]
 }

@@ -1,19 +1,5 @@
 {
-    "a": ["All that glitters is not gold", "A journey of a thousand miles begins with a single step"],
-    "b": ["Better late than never", "Beauty is in the eye of the beholder"],
-    "e": ["Every end is a new beginning", "Even the darkest night will end and the sun will rise"],
-    "g": ["Go with the flow", "Great minds think alike"],
-    "t": ["The only limit is your imagination", "Time heals all wounds"],
-    "p": ["Practice makes perfect", "Patience is a virtue"],
-    "s": ["Silence is golden", "Still waters run deep"],
-    "w": ["When in Rome, do as the Romans do", "Where there's a will, there's a way"],
-    "y": ["You can't judge a book by its cover", "You can't make an omelette without breaking eggs"],
-    "z": ["Zero in on your target", "Zig when others zag"],
-    "r": ["Rome wasn't built in a day", "Rome wasn't built in a day"],
-    "m": ["Make hay while the sun shines", "Make love, not war"],
-    "l": ["Laughter is the best medicine", "Life is what you make it"],
-    
-    "o": ["Out of sight, out of mind", "Once bitten, twice shy"] , 
+
   
     "A": ["An apple a day keeps the doctor away" , "All roads lead to Rome"], 
     "B": ["Better safe than sorry" , "Blood is thicker than water"] , 

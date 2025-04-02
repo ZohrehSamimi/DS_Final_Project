@@ -5,7 +5,7 @@
 The **Mosha’ereh Dialogue-Based Game** is an interactive voice-only application inspired by the traditional Persian poetry game, **Mosha’ereh**. It uses **Speechstate** for voice recognition and dialogue management, allowing players to engage in poetic battles using authentic Persian poetry.
 
 ## Game Concept
-**Mosha’ereh** is a turn-based Persian poetry game where players recite verses starting with the last letter of the previous verse. The game continues until a player fails to provide a valid verse within the time limit.
+**Mosha’ereh** is a turn-based Persian poetry game where players recite verses starting with the last letter of the previous verse. The game continues until a player fails to provide a valid verse within the time limit. So the game can be continued. 
 
 ## Features
 - **Voice Recognition:** Powered by **Speechstate** for an immersive voice-based experience.

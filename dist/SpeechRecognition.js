@@ -1,7 +1,7 @@
 // src/SpeechRecognition.ts
 export class SpeechRecognizer {
     recognition;
-    constructor(language = "fa-IR") {
+    constructor(language = "en-US") {
         const SpeechRecognitionClass = window.SpeechRecognition || window.webkitSpeechRecognition;
         if (!SpeechRecognitionClass) {
             throw new Error("Web Speech API is not supported in this browser.");

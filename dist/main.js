@@ -6,11 +6,17 @@ async function loadPoetry() {
     const res = await fetch("/poetry.json");
     return await res.json();
 }
+function updateExpectedLetter(letter) {
+    const el = document.getElementById("expected-letter");
+    if (el) {
+        el.textContent = `🎯 Start with: ${letter.toUpperCase()}`;
+    }
+}
 let recognizer;
 let game;
 document.addEventListener("DOMContentLoaded", async () => {
     const poetry = await loadPoetry();
-    recognizer = new SpeechRecognizer();
+    recognizer = new SpeechRecognizer("en-US");
     game = new GameLogic(poetry);
     const startBtn = document.getElementById("start-btn");
     startBtn?.addEventListener("click", async () => {
@@ -18,6 +24,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             const aiVerse = game.startGame();
             console.log("🤖 AI says:", aiVerse);
             speak(aiVerse);
+            updateExpectedLetter(game.getState().lastLetter);
             return;
         }
         // User's turn
@@ -38,6 +45,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                 }
                 console.log("🤖 AI replies:", aiVerse);
                 setTimeout(() => speak(aiVerse), 500);
+                updateExpectedLetter(game.getState().lastLetter);
             }
             else {
                 speak("Your verse is invalid. Try again.");

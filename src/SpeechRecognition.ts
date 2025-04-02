@@ -3,7 +3,7 @@
 export class SpeechRecognizer {
   private recognition: SpeechRecognition;
 
-  constructor(language: string = "fa-IR") {
+  constructor(language: string = "en-US") {
     const SpeechRecognitionClass =
       window.SpeechRecognition || (window as any).webkitSpeechRecognition;
 

@@ -5,6 +5,7 @@ import { GameLogic } from "./gameLogic";
 let recognizer: SpeechRecognizer;
 let game: GameLogic;
 let userScore = 0;
+let aiScore = 0;
 
 function addVerse(text: string, speaker: "user" | "ai") {
   const history = document.getElementById("verse-history");
@@ -22,11 +23,11 @@ async function loadPoetry(): Promise<Record<string, string[]>> {
   return await res.json();
 }
 
-function updateScoreDisplay(score: number) {
+function updateScoreDisplay(score: number , ai: number) {
   const scoreEl = document.getElementById("user-score");
-  if (scoreEl) {
-    scoreEl.textContent = String(score);
-  }
+  const aiEl = document.getElementById("ai-score");
+  if (scoreEl) scoreEl.textContent = String(score);
+  if (aiEl) aiEl.textContent = String(ai);  
 }
 
 function updateExpectedLetter(letter: string) {
@@ -35,7 +36,6 @@ function updateExpectedLetter(letter: string) {
     el.textContent = `🎯 Start with: ${letter.toUpperCase()}`;
   }
 }
-
 
 
 document.addEventListener("DOMContentLoaded", async () => {
@@ -48,7 +48,8 @@ document.addEventListener("DOMContentLoaded", async () => {
   startBtn?.addEventListener("click", async () => {
     if (game.getState().currentTurn === "ai") {
       const aiVerse = game.startGame();
-      console.log("🤖 AI says:", aiVerse);
+      console.log("🤖 AI replies:", aiVerse);
+      setTimeout(() => speak(aiVerse), 500);
       speak(aiVerse);
       addVerse(aiVerse, "ai");
       updateExpectedLetter(game.getState().lastLetter);
@@ -71,8 +72,11 @@ document.addEventListener("DOMContentLoaded", async () => {
       if (isValid) {
         addVerse(result, "user");
 
+        aiScore++;
+        updateScoreDisplay(userScore , aiScore);
+
         userScore++;
-        updateScoreDisplay(userScore);
+        updateScoreDisplay(userScore , aiScore);
 
         const aiVerse = game.getNextAIVerse();
 

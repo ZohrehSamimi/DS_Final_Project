@@ -44,6 +44,10 @@ document.addEventListener("DOMContentLoaded", async () => {
   game = new GameLogic(poetry);
 
   const startBtn = document.getElementById("start-btn");
+  document.getElementById("theme-select")?.addEventListener("change", (e) => {
+    const selectedTheme = (e.target as HTMLSelectElement).value;
+    document.body.className = `theme-${selectedTheme}`;
+  });
 
   startBtn?.addEventListener("click", async () => {
     if (game.getState().currentTurn === "ai") {

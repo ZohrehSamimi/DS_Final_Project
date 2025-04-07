@@ -1,10 +1,32 @@
 import { SpeechRecognizer } from "./SpeechRecognition";
 import { speak } from "./TextToSpeech";
 import { GameLogic } from "./gameLogic";
+let recognizer;
+let game;
+let userScore = 0;
+let aiScore = 0;
+function addVerse(text, speaker) {
+    const history = document.getElementById("verse-history");
+    if (history) {
+        const div = document.createElement("div");
+        div.className = `bubble ${speaker}`;
+        div.textContent = text;
+        history.appendChild(div);
+        history.scrollTop = history.scrollHeight;
+    }
+}
 // Load poetry dataset
 async function loadPoetry() {
     const res = await fetch("/poetry.json");
     return await res.json();
+}
+function updateScoreDisplay(score, ai) {
+    const scoreEl = document.getElementById("user-score");
+    const aiEl = document.getElementById("ai-score");
+    if (scoreEl)
+        scoreEl.textContent = String(score);
+    if (aiEl)
+        aiEl.textContent = String(ai);
 }
 function updateExpectedLetter(letter) {
     const el = document.getElementById("expected-letter");
@@ -12,18 +34,22 @@ function updateExpectedLetter(letter) {
         el.textContent = `🎯 Start with: ${letter.toUpperCase()}`;
     }
 }
-let recognizer;
-let game;
 document.addEventListener("DOMContentLoaded", async () => {
     const poetry = await loadPoetry();
     recognizer = new SpeechRecognizer("en-US");
     game = new GameLogic(poetry);
     const startBtn = document.getElementById("start-btn");
+    document.getElementById("theme-select")?.addEventListener("change", (e) => {
+        const selectedTheme = e.target.value;
+        document.body.className = `theme-${selectedTheme}`;
+    });
     startBtn?.addEventListener("click", async () => {
         if (game.getState().currentTurn === "ai") {
             const aiVerse = game.startGame();
-            console.log("🤖 AI says:", aiVerse);
+            console.log("🤖 AI replies:", aiVerse);
+            setTimeout(() => speak(aiVerse), 500);
             speak(aiVerse);
+            addVerse(aiVerse, "ai");
             updateExpectedLetter(game.getState().lastLetter);
             return;
         }
@@ -38,6 +64,11 @@ document.addEventListener("DOMContentLoaded", async () => {
             console.log("🧑 You said:", result);
             const isValid = game.processUserVerse(result);
             if (isValid) {
+                addVerse(result, "user");
+                aiScore++;
+                updateScoreDisplay(userScore, aiScore);
+                userScore++;
+                updateScoreDisplay(userScore, aiScore);
                 const aiVerse = game.getNextAIVerse();
                 if (!aiVerse) {
                     speak("I have no verse for that letter. You win!");
@@ -45,6 +76,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                 }
                 console.log("🤖 AI replies:", aiVerse);
                 setTimeout(() => speak(aiVerse), 500);
+                addVerse(aiVerse, "ai");
                 updateExpectedLetter(game.getState().lastLetter);
             }
             else {

@@ -2,6 +2,10 @@ import { SpeechRecognizer } from "./SpeechRecognition";
 import { speak } from "./TextToSpeech";
 import { GameLogic } from "./gameLogic";
 
+let recognizer: SpeechRecognizer;
+let game: GameLogic;
+let userScore = 0;
+
 function addVerse(text: string, speaker: "user" | "ai") {
   const history = document.getElementById("verse-history");
   if (history) {
@@ -17,6 +21,14 @@ async function loadPoetry(): Promise<Record<string, string[]>> {
   const res = await fetch("/poetry.json");
   return await res.json();
 }
+
+function updateScoreDisplay(score: number) {
+  const scoreEl = document.getElementById("user-score");
+  if (scoreEl) {
+    scoreEl.textContent = String(score);
+  }
+}
+
 function updateExpectedLetter(letter: string) {
   const el = document.getElementById("expected-letter");
   if (el) {
@@ -25,8 +37,6 @@ function updateExpectedLetter(letter: string) {
 }
 
 
-let recognizer: SpeechRecognizer;
-let game: GameLogic;
 
 document.addEventListener("DOMContentLoaded", async () => {
   const poetry = await loadPoetry();
@@ -60,6 +70,9 @@ document.addEventListener("DOMContentLoaded", async () => {
 
       if (isValid) {
         addVerse(result, "user");
+
+        userScore++;
+        updateScoreDisplay(userScore);
 
         const aiVerse = game.getNextAIVerse();
 

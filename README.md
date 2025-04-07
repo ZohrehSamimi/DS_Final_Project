@@ -95,6 +95,11 @@ Inspired by the traditional Persian poetry game Mosha’ereh.
 Special thanks to the creators of Speechstate for providing a powerful dialogue management framework.
 Contact 📧
 For any questions or feedback, please reach out to:
+_______ 
+
+Some changes such as buttons and scores and theme were added today in the afternoon. 
+
+
 
 Zohreh – z.samimi1981@gmail.com
 Bita – bitabki@gmail.com 

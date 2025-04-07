@@ -6,7 +6,7 @@ function addVerse(text: string, speaker: "user" | "ai") {
   const history = document.getElementById("verse-history");
   if (history) {
     const div = document.createElement("div");
-    div.className = 'bubble ${speaker}';
+    div.className = `bubble ${speaker}`;
     div.textContent = text;
     history.appendChild(div);
     history.scrollTop = history.scrollHeight;

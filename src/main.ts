@@ -2,6 +2,16 @@ import { SpeechRecognizer } from "./SpeechRecognition";
 import { speak } from "./TextToSpeech";
 import { GameLogic } from "./gameLogic";
 
+function addVerse(text: string, speaker: "user" | "ai") {
+  const history = document.getElementById("verse-history");
+  if (history) {
+    const div = document.createElement("div");
+    div.className = 'bubble ${speaker}';
+    div.textContent = text;
+    history.appendChild(div);
+    history.scrollTop = history.scrollHeight;
+  }
+}
 // Load poetry dataset
 async function loadPoetry(): Promise<Record<string, string[]>> {
   const res = await fetch("/poetry.json");
@@ -30,6 +40,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       const aiVerse = game.startGame();
       console.log("🤖 AI says:", aiVerse);
       speak(aiVerse);
+      addVerse(aiVerse, "ai");
       updateExpectedLetter(game.getState().lastLetter);
       return;
     }
@@ -48,6 +59,8 @@ document.addEventListener("DOMContentLoaded", async () => {
       const isValid = game.processUserVerse(result);
 
       if (isValid) {
+        addVerse(result, "user");
+
         const aiVerse = game.getNextAIVerse();
 
         if (!aiVerse) {
@@ -57,6 +70,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
         console.log("🤖 AI replies:", aiVerse);
         setTimeout(() => speak(aiVerse), 500);
+        addVerse(aiVerse, "ai");
         updateExpectedLetter(game.getState().lastLetter); 
       } else {
         speak("Your verse is invalid. Try again.");

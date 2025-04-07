@@ -1,6 +1,35 @@
 <!DOCTYPE html>
 <html lang="fa">
 <head>
+  <style>
+    #verse-history {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin: 20px 0;
+    }
+  
+    .bubble {
+      padding: 12px 16px;
+      border-radius: 16px;
+      max-width: 80%;
+      font-size: 1rem;
+      line-height: 1.4;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+  
+    .ai {
+      align-self: flex-start;
+      background-color: #e8f5e9;
+      color: #2e7d32;
+    }
+  
+    .user {
+      align-self: flex-end;
+      background-color: #e3f2fd;
+      color: #1565c0;
+    }
+  </style>
   <meta charset="UTF-8" />
   <title>Moshaereh Game</title>
 </head>
@@ -8,6 +37,10 @@
   <h1>🎤 Moshaereh Game</h1>
   <button id="start-btn">🎙️ Start Listening</button>
   <div id="expected-letter" style="margin-top: 10px; font-weight: bold;"></div>
+  <h2>Guess The Verse!</h2>
+  <div id="verse history"></div>
+  <button id="start-btn">▶️ Start / Next Turn</button>
+  <button id="restart-btn">🔄 Restart</button>
 
   <button id="speak-btn">🗣️ AI Speak Verse</button>
 
@@ -15,3 +48,4 @@
   <script src="https://code.responsivevoice.org/responsivevoice.js?key=BYGvhJnH"></script>
 </body>
 </html>
+

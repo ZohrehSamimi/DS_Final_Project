@@ -113,7 +113,7 @@
     
     "moduleResolution": "node",
     "allowSyntheticDefaultImports": true,
-    "types": ["node"],
+    "types": [],
      "typeRoots": ["./node_modules/@types", "./src/types"]
     
   }, 

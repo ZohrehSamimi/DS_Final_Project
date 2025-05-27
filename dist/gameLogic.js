@@ -28,6 +28,7 @@ export class GameLogic {
             this.state.lastLetter = this.getLastLetter(verse);
             return true;
         }
+        // Invalid input
         return false;
     }
     getNextAIVerse() {

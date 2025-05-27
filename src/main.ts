@@ -23,10 +23,10 @@ async function loadPoetry(): Promise<Record<string, string[]>> {
   return await res.json();
 }
 
-function updateScoreDisplay(score: number , ai: number) {
+function updateScoreDisplay(user: number, ai: number) {
   const scoreEl = document.getElementById("user-score");
   const aiEl = document.getElementById("ai-score");
-  if (scoreEl) scoreEl.textContent = String(score);
+  if (scoreEl) scoreEl.textContent = String(user);
   if (aiEl) aiEl.textContent = String(ai);  
 }
 
@@ -36,7 +36,6 @@ function updateExpectedLetter(letter: string) {
     el.textContent = `🎯 Start with: ${letter.toUpperCase()}`;
   }
 }
-
 
 document.addEventListener("DOMContentLoaded", async () => {
   const poetry = await loadPoetry();
@@ -54,7 +53,6 @@ document.addEventListener("DOMContentLoaded", async () => {
       const aiVerse = game.startGame();
       console.log("🤖 AI replies:", aiVerse);
       setTimeout(() => speak(aiVerse), 500);
-      speak(aiVerse);
       addVerse(aiVerse, "ai");
       updateExpectedLetter(game.getState().lastLetter);
       return;
@@ -75,12 +73,8 @@ document.addEventListener("DOMContentLoaded", async () => {
 
       if (isValid) {
         addVerse(result, "user");
-
-        aiScore++;
-        updateScoreDisplay(userScore , aiScore);
-
         userScore++;
-        updateScoreDisplay(userScore , aiScore);
+        updateScoreDisplay(userScore, aiScore);
 
         const aiVerse = game.getNextAIVerse();
 
@@ -92,9 +86,12 @@ document.addEventListener("DOMContentLoaded", async () => {
         console.log("🤖 AI replies:", aiVerse);
         setTimeout(() => speak(aiVerse), 500);
         addVerse(aiVerse, "ai");
+        aiScore++;
+        updateScoreDisplay(userScore, aiScore);
+
         updateExpectedLetter(game.getState().lastLetter); 
       } else {
-        speak("Your verse is invalid. Try again.");
+        speak("Your answer doesn't start with the correct letter. Please try again.");
       }
     } catch (err) {
       console.error("❌ Error:", err);
